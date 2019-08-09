@@ -40,7 +40,8 @@ export default class HeroProfile extends Component {
     agi: "",
     int: "",
     luk: "",
-    point: 0
+    point: 0,
+    error: false
   };
 
   componentDidMount() {
@@ -60,6 +61,9 @@ export default class HeroProfile extends Component {
       })
       .catch(err => {
         console.error(err);
+        this.setState({
+          error: true
+        });
       });
   }
 
