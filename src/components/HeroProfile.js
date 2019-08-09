@@ -51,14 +51,73 @@ export default class HeroProfile extends Component {
       });
   }
 
+  /* when add button is clicked, this is called.
+  And depend on which stat user clicks, it adds or subtracts */
   onAdd = stat => {
-    //for add btn
-    console.log("onadd");
+    switch (stat) {
+      case "str":
+        this.setState({
+          str: this.state.str + 1,
+          point: this.state.point - 1
+        });
+        break;
+      case "int":
+        this.setState({
+          int: this.state.int + 1,
+          point: this.state.point - 1
+        });
+        break;
+      case "agi":
+        this.setState({
+          agi: this.state.agi + 1,
+          point: this.state.point - 1
+        });
+        break;
+      case "luk":
+        this.setState({
+          luk: this.state.luk + 1,
+          point: this.state.point - 1
+        });
+        break;
+      default:
+        break;
+    }
   };
-
   onSubtract = stat => {
-    //for subtract btn
-    console.log("on subtract");
+    switch (stat) {
+      case "str":
+        this.setState({
+          str: this.state.str - 1,
+          point: this.state.point + 1
+        });
+        break;
+      case "int":
+        this.setState({
+          int: this.state.int - 1,
+          point: this.state.point + 1
+        });
+        break;
+      case "agi":
+        this.setState({
+          agi: this.state.agi - 1,
+          point: this.state.point + 1
+        });
+        break;
+      case "luk":
+        this.setState({
+          luk: this.state.luk - 1,
+          point: this.state.point + 1
+        });
+        break;
+      default:
+        this.setState({
+          str: this.state.str,
+          agi: this.state.agi,
+          int: this.state.int,
+          luk: this.state.luk
+        });
+        break;
+    }
   };
 
   onSubmit = props => {
@@ -79,13 +138,17 @@ export default class HeroProfile extends Component {
                   </Col>
                   <Col xs={10} md={8}>
                     <Row className="justify-content-around align-items-center">
-                      <Button variant="info" onClick={() => this.onAdd("str")}>
+                      <Button
+                        variant="info"
+                        onClick={() => this.onAdd("str")}
+                        disabled={this.state.point === 0}>
                         <i className="fas fa-plus" />
                       </Button>
                       {this.state.str}
                       <Button
                         variant="info"
-                        onClick={() => this.onSubtract("str")}>
+                        onClick={() => this.onSubtract("str")}
+                        disabled={this.state.str - 1 < 0}>
                         <i className="fas fa-minus" />
                       </Button>
                     </Row>
@@ -98,13 +161,17 @@ export default class HeroProfile extends Component {
                   </Col>
                   <Col xs={10} md={8}>
                     <Row className="justify-content-around align-items-center">
-                      <Button variant="info" onClick={() => this.onAdd("int")}>
+                      <Button
+                        variant="info"
+                        onClick={() => this.onAdd("int")}
+                        disabled={this.state.point === 0}>
                         <i className="fas fa-plus" />
                       </Button>
                       {this.state.int}
                       <Button
                         variant="info"
-                        onClick={() => this.onSubtract("int")}>
+                        onClick={() => this.onSubtract("int")}
+                        disabled={this.state.int - 1 < 0}>
                         <i className="fas fa-minus" />
                       </Button>
                     </Row>
@@ -117,13 +184,17 @@ export default class HeroProfile extends Component {
                   </Col>
                   <Col xs={10} md={8}>
                     <Row className="justify-content-around align-items-center">
-                      <Button variant="info" onClick={() => this.onAdd("agi")}>
+                      <Button
+                        variant="info"
+                        onClick={() => this.onAdd("agi")}
+                        disabled={this.state.point === 0}>
                         <i className="fas fa-plus" />
                       </Button>
                       {this.state.agi}
                       <Button
                         variant="info"
-                        onClick={() => this.onSubtract("agi")}>
+                        onClick={() => this.onSubtract("agi")}
+                        disabled={this.state.agi - 1 < 0}>
                         <i className="fas fa-minus" />
                       </Button>
                     </Row>
@@ -136,13 +207,17 @@ export default class HeroProfile extends Component {
                   </Col>
                   <Col xs={10} md={8}>
                     <Row className="justify-content-around align-items-center">
-                      <Button variant="info" onClick={() => this.onAdd("luk")}>
+                      <Button
+                        variant="info"
+                        onClick={() => this.onAdd("luk")}
+                        disabled={this.state.point === 0}>
                         <i className="fas fa-plus" />
                       </Button>
                       {this.state.luk}
                       <Button
                         variant="info"
-                        onClick={() => this.onSubtract("luk")}>
+                        onClick={() => this.onSubtract("luk")}
+                        disabled={this.state.luk - 1 < 0}>
                         <i className="fas fa-minus" />
                       </Button>
                     </Row>
@@ -158,7 +233,10 @@ export default class HeroProfile extends Component {
                 <p className="mt-3" id="statFont">
                   Points Left: {this.state.point}
                 </p>
-                <Button variant="info" onClick={() => this.onSubmit()}>
+                <Button
+                  variant="info"
+                  onClick={() => this.onSubmit(this.props)}
+                  disabled={this.state.point !== 0}>
                   Save
                 </Button>
               </Col>
