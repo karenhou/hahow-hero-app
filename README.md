@@ -3,6 +3,8 @@
 ## Installing
 
 ```
+git clone https://github.com/karenhou/hahow-hero-app.git
+cd hahow-hero-app
 npm install
 ```
 
