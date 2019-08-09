@@ -2,6 +2,12 @@ import React, { Component } from "react";
 import { Container, Row } from "react-bootstrap";
 import axios from "axios";
 import HeroCards from "./HeroCards";
+import styled from "styled-components";
+
+const HeroCardsContainer = styled(Container)`
+  padding-left: 0;
+  padding-right: 0;
+`;
 
 export default class HeroLists extends Component {
   state = {
@@ -25,11 +31,11 @@ export default class HeroLists extends Component {
   render() {
     return (
       <header>
-        <Container>
+        <HeroCardsContainer>
           <Row className="justify-content-center">
             <HeroCards heroes={this.state.data} />
           </Row>
-        </Container>
+        </HeroCardsContainer>
       </header>
     );
   }
