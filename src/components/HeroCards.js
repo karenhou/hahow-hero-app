@@ -1,6 +1,7 @@
 import React from "react";
 import { Col, Card, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const HeroCard = styled(Card)`
@@ -8,16 +9,18 @@ const HeroCard = styled(Card)`
   color: #17a2b8;
 `;
 
-const HeroCards = ({ heroes }) => {
+const HeroCards = ({ heroes, current, setCurrent }) => {
   if (heroes) {
     return heroes.map(hero => {
       return (
         <Col key={hero.id} xs={3}>
-          <Link to={`/${hero.id}`}>
-            <HeroCard className="h-100">
-              <Card.Img variant="top" src={hero.image} alt="hero images" />
+          <Link to={`/${hero.id}`} onClick={() => setCurrent(hero.id)}>
+            <Card.Img variant="top" src={hero.image} alt="hero images" />
+            <HeroCard>
               <Card.Body>
-                <Card.Title>{hero.name}</Card.Title>
+                <Card.Title>
+                  {hero.name} {current}
+                </Card.Title>
               </Card.Body>
             </HeroCard>
           </Link>
@@ -27,6 +30,13 @@ const HeroCards = ({ heroes }) => {
   } else {
     return <Spinner animation="border" variant="danger" />;
   }
+};
+
+HeroCards.propTypes = {
+  heroes: PropTypes.PropTypes.oneOfType([PropTypes.array, PropTypes.string])
+    .isRequired,
+  current: PropTypes.string.isRequired,
+  setCurrent: PropTypes.func.isRequired
 };
 
 export default HeroCards;
