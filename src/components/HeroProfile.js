@@ -35,6 +35,8 @@ const JumboContainer = styled(Jumbotron)`
 `;
 
 export default class HeroProfile extends Component {
+  /* use local state to store hero's stats
+  points to prevent extra/not enough point to give to hero */
   state = {
     str: "",
     agi: "",
@@ -44,6 +46,7 @@ export default class HeroProfile extends Component {
     error: false
   };
 
+  // fetch heroes' stat via hero id, apis and store them in state
   componentDidMount() {
     axios
       .get(
@@ -284,9 +287,7 @@ export default class HeroProfile extends Component {
                   xs={12}
                   sm={12}
                   md={6}>
-                  <p className="mt-3" id="statFont">
-                    Points Left: {this.state.point}
-                  </p>
+                  <p className="mt-3">Points Left: {this.state.point}</p>
                   <Button
                     variant="info"
                     onClick={() => this.onSubmit(this.props)}

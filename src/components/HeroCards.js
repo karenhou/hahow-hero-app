@@ -31,7 +31,7 @@ const HeroCards = ({ heroes, current, setCurrent }) => {
               {current === hero.id ? (
                 <HeroHeadshot
                   src={require(`../images/${hero.name}.svg`)}
-                  alt="here images"
+                  alt="hero images"
                 />
               ) : (
                 <Card.Img variant="top" src={hero.image} alt="hero images" />
