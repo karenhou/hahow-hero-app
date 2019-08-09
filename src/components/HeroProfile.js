@@ -1,6 +1,26 @@
 import React, { Component } from "react";
 import { Container, Col, Row, Button, Jumbotron } from "react-bootstrap";
 import axios from "axios";
+import styled, { keyframes } from "styled-components";
+import { fadeIn } from "react-animations";
+
+// fade in effect as styled component
+const fadeinAnimation = keyframes`${fadeIn}`;
+
+const FadeInDiv = styled.div`
+  animation: 2s ${fadeinAnimation};
+`;
+
+const JumboContainer = styled(Jumbotron)`
+  background-color: #282c34;
+  margin-bottom: 0;
+  font-size: x-large;
+
+  .container {
+    padding: 2.5rem;
+    background-color: white;
+  }
+`;
 
 export default class HeroProfile extends Component {
   state = {
@@ -48,102 +68,104 @@ export default class HeroProfile extends Component {
 
   render() {
     return (
-      <Jumbotron>
-        <Container>
-          <Row className="p-3">
-            <Col xs={12} md={6}>
-              <Row className="align-items-center py-3 px-3">
-                <Col xs={2} md={4}>
-                  <Row className="justify-content-center">Str</Row>
-                </Col>
-                <Col xs={10} md={8}>
-                  <Row className="justify-content-around align-items-center">
-                    <Button variant="info" onClick={() => this.onAdd("str")}>
-                      <i className="fas fa-plus" />
-                    </Button>
-                    {this.state.str}
-                    <Button
-                      variant="info"
-                      onClick={() => this.onSubtract("str")}>
-                      <i className="fas fa-minus" />
-                    </Button>
-                  </Row>
-                </Col>
-              </Row>
+      <JumboContainer>
+        <FadeInDiv>
+          <Container>
+            <Row className="p-3">
+              <Col xs={12} md={6}>
+                <Row className="align-items-center py-3 px-3">
+                  <Col xs={2} md={4}>
+                    <Row className="justify-content-center">Str</Row>
+                  </Col>
+                  <Col xs={10} md={8}>
+                    <Row className="justify-content-around align-items-center">
+                      <Button variant="info" onClick={() => this.onAdd("str")}>
+                        <i className="fas fa-plus" />
+                      </Button>
+                      {this.state.str}
+                      <Button
+                        variant="info"
+                        onClick={() => this.onSubtract("str")}>
+                        <i className="fas fa-minus" />
+                      </Button>
+                    </Row>
+                  </Col>
+                </Row>
 
-              <Row className="align-items-center py-3 px-3">
-                <Col xs={2} md={4}>
-                  <Row className="justify-content-center">Int</Row>
-                </Col>
-                <Col xs={10} md={8}>
-                  <Row className="justify-content-around align-items-center">
-                    <Button variant="info" onClick={() => this.onAdd("int")}>
-                      <i className="fas fa-plus" />
-                    </Button>
-                    {this.state.int}
-                    <Button
-                      variant="info"
-                      onClick={() => this.onSubtract("int")}>
-                      <i className="fas fa-minus" />
-                    </Button>
-                  </Row>
-                </Col>
-              </Row>
+                <Row className="align-items-center py-3 px-3">
+                  <Col xs={2} md={4}>
+                    <Row className="justify-content-center">Int</Row>
+                  </Col>
+                  <Col xs={10} md={8}>
+                    <Row className="justify-content-around align-items-center">
+                      <Button variant="info" onClick={() => this.onAdd("int")}>
+                        <i className="fas fa-plus" />
+                      </Button>
+                      {this.state.int}
+                      <Button
+                        variant="info"
+                        onClick={() => this.onSubtract("int")}>
+                        <i className="fas fa-minus" />
+                      </Button>
+                    </Row>
+                  </Col>
+                </Row>
 
-              <Row className="align-items-center py-3 px-3">
-                <Col xs={2} md={4}>
-                  <Row className="justify-content-center">Agi</Row>
-                </Col>
-                <Col xs={10} md={8}>
-                  <Row className="justify-content-around align-items-center">
-                    <Button variant="info" onClick={() => this.onAdd("agi")}>
-                      <i className="fas fa-plus" />
-                    </Button>
-                    {this.state.agi}
-                    <Button
-                      variant="info"
-                      onClick={() => this.onSubtract("agi")}>
-                      <i className="fas fa-minus" />
-                    </Button>
-                  </Row>
-                </Col>
-              </Row>
+                <Row className="align-items-center py-3 px-3">
+                  <Col xs={2} md={4}>
+                    <Row className="justify-content-center">Agi</Row>
+                  </Col>
+                  <Col xs={10} md={8}>
+                    <Row className="justify-content-around align-items-center">
+                      <Button variant="info" onClick={() => this.onAdd("agi")}>
+                        <i className="fas fa-plus" />
+                      </Button>
+                      {this.state.agi}
+                      <Button
+                        variant="info"
+                        onClick={() => this.onSubtract("agi")}>
+                        <i className="fas fa-minus" />
+                      </Button>
+                    </Row>
+                  </Col>
+                </Row>
 
-              <Row className="align-items-center py-3 px-3">
-                <Col xs={2} md={4}>
-                  <Row className="justify-content-center">Luk</Row>
-                </Col>
-                <Col xs={10} md={8}>
-                  <Row className="justify-content-around align-items-center">
-                    <Button variant="info" onClick={() => this.onAdd("luk")}>
-                      <i className="fas fa-plus" />
-                    </Button>
-                    {this.state.luk}
-                    <Button
-                      variant="info"
-                      onClick={() => this.onSubtract("luk")}>
-                      <i className="fas fa-minus" />
-                    </Button>
-                  </Row>
-                </Col>
-              </Row>
-            </Col>
+                <Row className="align-items-center py-3 px-3">
+                  <Col xs={2} md={4}>
+                    <Row className="justify-content-center">Luk</Row>
+                  </Col>
+                  <Col xs={10} md={8}>
+                    <Row className="justify-content-around align-items-center">
+                      <Button variant="info" onClick={() => this.onAdd("luk")}>
+                        <i className="fas fa-plus" />
+                      </Button>
+                      {this.state.luk}
+                      <Button
+                        variant="info"
+                        onClick={() => this.onSubtract("luk")}>
+                        <i className="fas fa-minus" />
+                      </Button>
+                    </Row>
+                  </Col>
+                </Row>
+              </Col>
 
-            <Col
-              className="align-self-end text-right mb-3"
-              xs={12}
-              sm={12}
-              md={6}>
-              <p className="mt-3" id="statFont">
-                Points Left: {this.state.point}
-              </p>
-              <Button variant="info" onClick={() => this.onSubmit()}>
-                Save
-              </Button>
-            </Col>
-          </Row>
-        </Container>
-      </Jumbotron>
+              <Col
+                className="align-self-end text-right mb-3"
+                xs={12}
+                sm={12}
+                md={6}>
+                <p className="mt-3" id="statFont">
+                  Points Left: {this.state.point}
+                </p>
+                <Button variant="info" onClick={() => this.onSubmit()}>
+                  Save
+                </Button>
+              </Col>
+            </Row>
+          </Container>
+        </FadeInDiv>
+      </JumboContainer>
     );
   }
 }
