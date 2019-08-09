@@ -164,7 +164,7 @@ export default class HeroProfile extends Component {
           error: false
         });
         alertify.confirm("Update successful,click ok to redirect", function() {
-          window.location.href = "/";
+          window.location.href = "/heroes";
         });
       })
       .catch(err => {
