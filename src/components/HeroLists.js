@@ -30,7 +30,7 @@ export default class HeroLists extends Component {
   componentDidMount() {
     let path = window.location.pathname.split("/");
     axios
-      .get("http://hahow-recruit.herokuapp.com/heroes")
+      .get("https://hahow-recruit.herokuapp.com/heroes")
       .then(res => {
         this.setState({ data: res.data, current: path.pop() });
       })

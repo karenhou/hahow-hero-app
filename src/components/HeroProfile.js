@@ -50,7 +50,7 @@ export default class HeroProfile extends Component {
   componentDidMount() {
     axios
       .get(
-        `http://hahow-recruit.herokuapp.com/heroes/${
+        `https://hahow-recruit.herokuapp.com/heroes/${
           this.props.match.params.id
         }/profile`
       )
@@ -144,7 +144,7 @@ export default class HeroProfile extends Component {
     if not alert would show */
     axios
       .patch(
-        `http://hahow-recruit.herokuapp.com/heroes/${
+        `https://hahow-recruit.herokuapp.com/heroes/${
           props.match.params.id
         }/profile`,
         {
