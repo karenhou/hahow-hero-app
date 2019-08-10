@@ -46,3 +46,5 @@ npm start
 4. 困難遇到
    1. 在/heroes/:heroid 頁面 refresh，無法得知現在所選英雄因為 heroes 沒有在 route 裡面
       - 辦法: 在 componentDidMount 底下去取得現在網頁的位置，得知現在的 hero id 轉而去設定 current 然後以 props 的方式傳至 heroCards component
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/11f5c39a-0127-44f0-98ef-f9aa51f0ff6e/deploy-status)](https://app.netlify.com/sites/gallant-raman-6b9711/deploys)
