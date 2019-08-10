@@ -4,6 +4,7 @@ import HeroLists from "./components/HeroLists";
 import HeroProfile from "./components/HeroProfile";
 import styled from "styled-components";
 import Particles from "react-particles-js";
+import axios from "axios";
 
 const AppContainer = styled.div`
   text-align: center;
@@ -19,6 +20,27 @@ const AppContainer = styled.div`
 `;
 
 export default class App extends Component {
+  state = {
+    data: "",
+    current: ""
+  };
+
+  setCurrent = x => {
+    this.setState({ current: x });
+  };
+
+  componentDidMount() {
+    let path = window.location.pathname.split("/");
+    axios
+      .get("https://hahow-recruit.herokuapp.com/heroes")
+      .then(res => {
+        this.setState({ data: res.data, current: path.pop() });
+      })
+      .catch(err => {
+        console.log("err ", err);
+      });
+  }
+
   render() {
     return (
       <Router basename="/heroes">
@@ -75,13 +97,21 @@ export default class App extends Component {
               retina_detect: true
             }}
           />
-          <HeroLists />
+          <HeroLists
+            heroes={this.state.data}
+            current={this.state.current}
+            setCurrent={this.setCurrent}
+          />
           <section>
             <Route
               exact
               path="/:id"
               render={props => (
-                <HeroProfile {...props} key={props.match.params.id} />
+                <HeroProfile
+                  {...props}
+                  key={props.match.params.id}
+                  setCurrent={this.setCurrent}
+                />
               )}
             />
           </section>

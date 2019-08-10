@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { Container, Row } from "react-bootstrap";
-import axios from "axios";
 import HeroCards from "./HeroCards";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const MarvelBanner = styled.img`
   height: 15rem;
@@ -17,48 +17,34 @@ const HeroCardsContainer = styled(Container)`
   padding-right: 0;
 `;
 
-export default class HeroLists extends Component {
-  state = {
-    data: "",
-    current: ""
-  };
+const HeroLists = ({ heroes, current, setCurrent }) => {
+  return (
+    <header>
+      <Row className="justify-content-center">
+        <MarvelBanner
+          src={require("../images/Marvel_logo.svg")}
+          alt="marvel logo"
+        />
+      </Row>
 
-  setCurrent = x => {
-    this.setState({ current: x });
-  };
-
-  componentDidMount() {
-    let path = window.location.pathname.split("/");
-    axios
-      .get("https://hahow-recruit.herokuapp.com/heroes")
-      .then(res => {
-        this.setState({ data: res.data, current: path.pop() });
-      })
-      .catch(err => {
-        console.log("err ", err);
-      });
-  }
-
-  render() {
-    return (
-      <header>
+      <HeroCardsContainer>
         <Row className="justify-content-center">
-          <MarvelBanner
-            src={require("../images/Marvel_logo.svg")}
-            alt="marvel logo"
+          <HeroCards
+            heroes={heroes}
+            current={current}
+            setCurrent={setCurrent}
           />
         </Row>
+      </HeroCardsContainer>
+    </header>
+  );
+};
 
-        <HeroCardsContainer>
-          <Row className="justify-content-center">
-            <HeroCards
-              heroes={this.state.data}
-              current={this.state.current}
-              setCurrent={this.setCurrent}
-            />
-          </Row>
-        </HeroCardsContainer>
-      </header>
-    );
-  }
-}
+HeroLists.propTypes = {
+  heroes: PropTypes.PropTypes.oneOfType([PropTypes.array, PropTypes.string])
+    .isRequired,
+  current: PropTypes.string.isRequired,
+  setCurrent: PropTypes.func.isRequired
+};
+
+export default HeroLists;

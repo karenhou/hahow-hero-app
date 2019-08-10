@@ -12,7 +12,7 @@ import styled, { keyframes } from "styled-components";
 import { fadeIn } from "react-animations";
 import alertify from "alertifyjs";
 
-alertify.defaults.transition = "slide";
+alertify.defaults.transition = "zoom";
 alertify.defaults.theme.ok = "btn btn-info";
 alertify.defaults.theme.cancel = "btn btn-danger";
 
@@ -163,10 +163,10 @@ export default class HeroProfile extends Component {
         this.setState({
           error: false
         });
-        console.log("this props ", this.props);
+        // console.log("this props ", this.props);
         alertify.confirm("Update successful,click ok to redirect", () => {
-          // window.location.href = "/heroes";
-          this.props.history.replace("/");
+          this.props.setCurrent("0");
+          this.props.history.push("/");
         });
       })
       .catch(err => {
