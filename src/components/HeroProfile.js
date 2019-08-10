@@ -163,8 +163,10 @@ export default class HeroProfile extends Component {
         this.setState({
           error: false
         });
-        alertify.confirm("Update successful,click ok to redirect", function() {
-          window.location.href = "/heroes";
+        console.log("this props ", this.props);
+        alertify.confirm("Update successful,click ok to redirect", () => {
+          // window.location.href = "/heroes";
+          this.props.history.replace("/");
         });
       })
       .catch(err => {
